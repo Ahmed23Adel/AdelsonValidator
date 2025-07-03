@@ -10,7 +10,8 @@ import Foundation
 enum StringContainsError: Error{
     case errorNotContains(substr: String)
 }
-class StringContains: SingleInputValidator{
+
+struct StringContains: SingleInputValidator{
     typealias InputType = String
     private(set)var input: String
     private(set) var substr: String
@@ -21,7 +22,7 @@ class StringContains: SingleInputValidator{
         self.substr = substr
     }
     
-    func check() -> Bool {
+    mutating func check() -> Bool {
         if substr.isEmpty{ return true }
         if input.contains(substr) {
             return true
@@ -30,27 +31,11 @@ class StringContains: SingleInputValidator{
         return false
     }
     
-    func checkAndExec(onSuccess: () -> Void, onFail: () -> Void) {
-        if check() {
-            onSuccess()
-        }
-        else{
-            onFail()
-        }
+    mutating func saveError() {
+        error = StringContainsError.errorNotContains(substr: substr)
     }
     
-    func ThrowableCheck() throws {
-        if !check() {
-            error = StringContainsError.errorNotContains(substr: substr)
-            throw StringContainsError.errorNotContains(substr: substr)
-            
-        }
-        
-    }
-    
-    func getError() -> (any Error)? {
-        return error
-    }
+   
     
     
 }
