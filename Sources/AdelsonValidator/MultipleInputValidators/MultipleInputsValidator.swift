@@ -32,7 +32,7 @@ extension MultipleInputValidator{
     mutating func ThrowableCheck() throws {
         if !check(){
             saveError()
-            throw error!
+            throw getError()!
         }
     }
     

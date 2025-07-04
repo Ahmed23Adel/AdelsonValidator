@@ -21,6 +21,16 @@ struct StringHasMaxLen: SingleInputValidator{
         self.input = input
         self.maxLen = maxLen
     }
+
+    init(maxLen: Int){
+        self.maxLen = maxLen
+        self.input = ""
+    }
+    
+    mutating func setInput(input: String) {
+        self.input = input
+        self.error = nil
+    }
     
     mutating func check() -> Bool {
         if input.count <= maxLen{

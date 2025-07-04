@@ -22,6 +22,17 @@ struct StringHasMinLen: SingleInputValidator{
         self.minLen = minLen
     }
     
+    init(minLen: Int){
+        self.minLen = minLen
+        self.input = ""
+    }
+    
+    
+    mutating func setInput(input: String) {
+        self.input = input
+        self.error = nil
+    }
+    
     mutating func check() -> Bool {
         if input.count >= minLen{
             return true

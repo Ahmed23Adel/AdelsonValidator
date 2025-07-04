@@ -12,7 +12,7 @@ enum StringNotContainAnyInListError: Error {
 }
 struct StringNotContainAnyInList: SingleInputValidator {
     typealias InputType = String
-    private(set) var input: String
+    private(set)var input: String
     private(set) var notContained: [String]
     private(set)var error: (any Error)?
     
@@ -21,6 +21,16 @@ struct StringNotContainAnyInList: SingleInputValidator {
         self.notContained = notContained
     }
     
+    init(notContained: [String]) {
+        self.notContained = notContained
+        self.input = ""
+    }
+    
+    
+    mutating func setInput(input: String) {
+        self.input = input
+        self.error = nil
+    }
     
     mutating func check() -> Bool {
         for item in notContained{

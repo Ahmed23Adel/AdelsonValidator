@@ -22,6 +22,16 @@ struct StringConfromsToRegex: SingleInputValidator{
         self.regex = regex
     }
     
+    init(regex: String){
+        self.regex = regex
+        self.input = ""
+    }
+    
+    mutating func setInput(input: String) {
+        self.input = input
+        self.error = nil
+    }
+    
     mutating func check() -> Bool {
         let predicate  = NSPredicate(format: "SELF MATCHES %@", regex)
         if predicate.evaluate(with: input){

@@ -22,6 +22,17 @@ struct StringContains: SingleInputValidator{
         self.substr = substr
     }
     
+    init(substr: String){
+        self.substr = substr
+        self.input = ""
+    }
+    
+    mutating func setInput(input: String) {
+        self.input = input
+        self.error = nil
+    }
+    
+    
     mutating func check() -> Bool {
         if substr.isEmpty{ return true }
         if input.contains(substr) {

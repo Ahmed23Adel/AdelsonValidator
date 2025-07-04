@@ -1,22 +1,20 @@
 //
-//  SingleInputValidator.swift
+//  File.swift
 //  AdelsonValidator
 //
-//  Created by ahmed on 02/07/2025.
+//  Created by ahmed on 04/07/2025.
 //
 
 import Foundation
 
-enum SingleInputValidatorError: Error{
-    case inputIsNotInitialized
-}
-// you must call setInput before checking, otherwise it will work on the default value
-protocol SingleInputValidator<InputType> {
+
+protocol SingleInputPolicyProtocolType {
     associatedtype InputType: Comparable
-    var input: InputType { get }
-    var error: (any Error)? { get }
+    var inputs: [InputType] { get }
+    @available(macOS 13.0.0, *)
+    var singleInputValidators: [any SingleInputValidator<InputType>] { get }
+    var errors: [(any Error)] { get }
     
-    mutating func setInput(input: InputType)
     mutating func check() -> Bool
     mutating func checkAndExec(onSuccess: ()->Void, onFail: ()->Void)
     mutating func ThrowableCheck() throws
@@ -24,10 +22,8 @@ protocol SingleInputValidator<InputType> {
     mutating func saveError()
 }
 
-extension SingleInputValidator{
-    
-    
-    
+
+extension SingleInputPolicyProtocolType{
     mutating func checkAndExec(onSuccess: () -> Void, onFail: () -> Void) {
         if check(){
             onSuccess()
@@ -44,7 +40,10 @@ extension SingleInputValidator{
         }
     }
     
+    // it returns the first error only
     mutating func getError() -> (any Error)? {
-        return error
+        return errors[0]
     }
 }
+
+

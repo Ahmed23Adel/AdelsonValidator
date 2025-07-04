@@ -1,0 +1,36 @@
+//
+//  File.swift
+//  AdelsonValidator
+//
+//  Created by ahmed on 04/07/2025.
+//
+
+import Foundation
+
+@available(macOS 13.0.0, *)
+struct SingleInputPolicyProtocol<InputType: Comparable>: SingleInputPolicyProtocolType{
+    var inputs: [InputType]
+    var singleInputValidators: [any SingleInputValidator<InputType>]
+    var errors: [any Error]
+    
+    mutating func check() -> Bool {
+        for var validator in singleInputValidators {
+            for input in inputs {
+                validator.setInput(input: input)
+                let result = validator.check()
+                if !result{
+                    errors.append(validator.getError()!)
+                }
+            }
+        }
+        
+        return true
+    }
+    
+    
+    mutating func saveError() {
+        
+    }
+    
+    
+}
