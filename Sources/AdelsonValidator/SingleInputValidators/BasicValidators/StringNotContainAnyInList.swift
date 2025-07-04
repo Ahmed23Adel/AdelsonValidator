@@ -11,7 +11,6 @@ enum StringNotContainAnyInListError: Error {
     case StringContainsOneItemFromList
 }
 struct StringNotContainAnyInList: SingleInputValidator {
-    typealias InputType = String
     private(set)var input: String
     private(set) var notContained: [String]
     private(set)var error: (any Error)?

@@ -12,13 +12,22 @@ enum AllOfSameValueError: Error{
 }
 
 struct AllOfSameValue: MultipleInputValidator{
-    typealias InputType = String
     var inputs: [String]
     var error: (any Error)?
     
     init(inputs: [String]) {
         self.inputs = inputs
     }
+    
+    init (){
+        self.inputs = []
+    }
+    
+    mutating func setInputs(inputs: [String]){
+        self.inputs = inputs
+        self.error = nil
+    }
+    
     mutating func check() -> Bool {
         if inputs.count == 0 {
             return true

@@ -12,7 +12,6 @@ enum StringContainsError: Error{
 }
 
 struct StringContains: SingleInputValidator{
-    typealias InputType = String
     private(set)var input: String
     private(set) var substr: String
     private(set) var error: (any Error)?

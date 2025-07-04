@@ -12,7 +12,6 @@ enum StringHasMaxLenError: Error{
 }
 
 struct StringHasMaxLen: SingleInputValidator{
-    typealias InputType = String
     private(set)var input: String
     private(set) var maxLen: Int
     private(set) var error: (any Error)?

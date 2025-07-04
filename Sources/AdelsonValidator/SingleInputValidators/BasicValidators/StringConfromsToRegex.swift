@@ -12,7 +12,6 @@ enum StringConfromsToRegexError: Error{
 }
 
 struct StringConfromsToRegex: SingleInputValidator{
-    typealias InputType = String
     private(set)var input: String
     private(set) var regex: String
     private(set) var error: (any Error)?

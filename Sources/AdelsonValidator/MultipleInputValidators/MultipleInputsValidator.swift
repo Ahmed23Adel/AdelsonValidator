@@ -7,11 +7,12 @@
 
 import Foundation
 
-protocol MultipleInputValidator{
+protocol MultipleInputValidator<InputType>{
     associatedtype InputType: Comparable
     var inputs: [InputType] { get }
     var error: (any Error)? { get }
     
+    mutating func setInputs(inputs: [String])
     mutating func check() -> Bool
     mutating func checkAndExec(onSuccess: ()->Void, onFail: ()->Void)
     mutating func ThrowableCheck() throws

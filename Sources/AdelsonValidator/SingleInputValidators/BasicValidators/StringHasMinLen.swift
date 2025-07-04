@@ -12,7 +12,6 @@ enum StringHasMinLenError: Error{
 }
 
 struct StringHasMinLen: SingleInputValidator{
-    typealias InputType = String
     private(set)var input: String
     private(set) var minLen: Int
     private(set) var error: (any Error)?

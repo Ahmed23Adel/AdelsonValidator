@@ -23,8 +23,12 @@ struct SingleInputPolicyProtocol<InputType: Comparable>: SingleInputPolicyProtoc
                 }
             }
         }
+        if errors.isEmpty{
+            return true
+        } else{
+            return false
+        }
         
-        return true
     }
     
     

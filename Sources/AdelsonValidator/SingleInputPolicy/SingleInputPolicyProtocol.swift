@@ -8,7 +8,7 @@
 import Foundation
 
 
-protocol SingleInputPolicyProtocolType {
+protocol SingleInputPolicyProtocolType<InputType> {
     associatedtype InputType: Comparable
     var inputs: [InputType] { get }
     @available(macOS 13.0.0, *)
