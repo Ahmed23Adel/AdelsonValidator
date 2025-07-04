@@ -12,7 +12,15 @@ struct MultipleInputPolicy<InputType: Comparable>: MultipleInputPolicyType{
     var inputs: [InputType]
     var singleInputValidators: [any SingleInputValidator<InputType>]
     var multipleInputValidators: [any MultipleInputValidator<InputType>]
-    var errors: [any Error]
+    var errors: [any Error] = []
+    
+    init(inputs: [InputType],
+         singleInputValidators: [any SingleInputValidator<InputType>],
+         multipleInputValidators: [any MultipleInputValidator<InputType>]) {
+        self.inputs = inputs
+        self.singleInputValidators = singleInputValidators
+        self.multipleInputValidators = multipleInputValidators
+    }
     
     mutating func check() -> Bool {
         errors.removeAll()

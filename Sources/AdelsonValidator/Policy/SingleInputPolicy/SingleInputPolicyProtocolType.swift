@@ -11,7 +11,12 @@ import Foundation
 struct SingleInputPolicyProtocol<InputType: Comparable>: SingleInputPolicyProtocolType{
     var inputs: [InputType]
     var singleInputValidators: [any SingleInputValidator<InputType>]
-    var errors: [any Error]
+    var errors: [any Error] = []
+    
+    init(inputs: [InputType], singleInputValidators: [any SingleInputValidator<InputType>]) {
+        self.inputs = inputs
+        self.singleInputValidators = singleInputValidators
+    }
     
     mutating func check() -> Bool {
         for var validator in singleInputValidators {
