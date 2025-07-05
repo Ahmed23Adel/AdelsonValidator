@@ -8,7 +8,7 @@
 import Foundation
 
 enum StringNotContainAnyInListError: Error {
-    case StringContainsOneItemFromList
+    case StringContainsOneItemOrMoreFromList
 }
 struct StringNotContainAnyInList: SingleInputValidator {
     private(set)var input: String
@@ -42,7 +42,7 @@ struct StringNotContainAnyInList: SingleInputValidator {
     }
     
     mutating func saveError() {
-        error = StringNotContainAnyInListError.StringContainsOneItemFromList
+        error = StringNotContainAnyInListError.StringContainsOneItemOrMoreFromList
     }
     
     

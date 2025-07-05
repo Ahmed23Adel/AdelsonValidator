@@ -24,6 +24,8 @@ struct MultipleInputPolicy<InputType: Comparable>: MultipleInputPolicyType{
     
     mutating func check() -> Bool {
         errors.removeAll()
+        checkSingleInputValidators()
+        checkMultipleInputValidators()
         if errors.isEmpty{
             return true
         } else{

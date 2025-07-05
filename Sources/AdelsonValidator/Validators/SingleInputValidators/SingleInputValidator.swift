@@ -7,11 +7,8 @@
 
 import Foundation
 
-enum SingleInputValidatorError: Error{
-    case inputIsNotInitialized
-}
 // you must call setInput before checking, otherwise it will work on the default value
-protocol SingleInputValidator<InputType> {
+public protocol SingleInputValidator<InputType> {
     associatedtype InputType: Comparable
     var input: InputType { get }
     var error: (any Error)? { get }
