@@ -10,6 +10,7 @@ import Foundation
 enum StringNotContainAnyInListError: Error {
     case StringContainsOneItemOrMoreFromList
 }
+
 struct StringNotContainAnyInList: SingleInputValidator {
     private(set)var input: String
     private(set) var notContained: [String]

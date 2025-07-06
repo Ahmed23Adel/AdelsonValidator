@@ -7,43 +7,39 @@
 
 import Foundation
 
-
-protocol SingleInputPolicyProtocolType<InputType> {
-    associatedtype InputType: Comparable
-    var inputs: [InputType] { get }
-    @available(macOS 13.0.0, *)
-    var singleInputValidators: [any SingleInputValidator<InputType>] { get }
-    var errors: [(any Error)] { get }
+@available(macOS 13.0.0, *)
+struct SingleInputPolicy<InputType: Comparable>: SingleInputPolicyType{
+    var inputs: [InputType]
+    var singleInputValidators: [any SingleInputValidator<InputType>]
+    var errors: [any Error] = []
     
-    mutating func check() -> Bool
-    mutating func checkAndExec(onSuccess: ()->Void, onFail: ()->Void)
-    mutating func ThrowableCheck() throws
-    mutating func getError() -> (any Error)?
-    mutating func saveError()
-}
-
-
-extension SingleInputPolicyProtocolType{
-    mutating func checkAndExec(onSuccess: () -> Void, onFail: () -> Void) {
-        if check(){
-            onSuccess()
-        } else {
-            saveError()
-            onFail()
+    init(inputs: [InputType], singleInputValidators: [any SingleInputValidator<InputType>]) {
+        self.inputs = inputs
+        self.singleInputValidators = singleInputValidators
+    }
+    
+    mutating func check() -> Bool {
+        for var validator in singleInputValidators {
+            for input in inputs {
+                validator.setInput(input: input)
+                let result = validator.check()
+                if !result{
+                    errors.append(validator.getError()!)
+                }
+            }
         }
-    }
-    
-    mutating func ThrowableCheck() throws {
-        if !check(){
-            saveError()
-            throw getError()!
+        if errors.isEmpty{
+            return true
+        } else{
+            return false
         }
+        
     }
     
-    // it returns the first error only
-    mutating func getError() -> (any Error)? {
-        return errors[0]
+    
+    mutating func saveError() {
+        
     }
+    
+    
 }
-
-

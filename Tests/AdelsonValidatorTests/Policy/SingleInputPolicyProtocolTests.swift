@@ -23,7 +23,7 @@ class SingleInputPolicyProtocolTests: XCTestCase {
         ]
         
         // Act
-        let policy = SingleInputPolicyProtocol(inputs: inputs, singleInputValidators: validators)
+        let policy = SingleInputPolicy(inputs: inputs, singleInputValidators: validators)
         
         // Assert
         XCTAssertEqual(policy.inputs.count, 3)
@@ -39,7 +39,7 @@ class SingleInputPolicyProtocolTests: XCTestCase {
             StringHasMinLen(minLen: 3),
             StringHasMaxLen(maxLen: 10)
         ]
-        var policy = SingleInputPolicyProtocol(inputs: inputs, singleInputValidators: validators)
+        var policy = SingleInputPolicy(inputs: inputs, singleInputValidators: validators)
         
         // Act
         let result = policy.check()
@@ -56,7 +56,7 @@ class SingleInputPolicyProtocolTests: XCTestCase {
         let validators: [any SingleInputValidator<String>] = [
             StringHasMinLen(minLen: 3)
         ]
-        var policy = SingleInputPolicyProtocol(inputs: inputs, singleInputValidators: validators)
+        var policy = SingleInputPolicy(inputs: inputs, singleInputValidators: validators)
         
         // Act
         let result = policy.check()
@@ -74,7 +74,7 @@ class SingleInputPolicyProtocolTests: XCTestCase {
             StringHasMinLen(minLen: 3),
             StringHasMaxLen(maxLen: 10)
         ]
-        var policy = SingleInputPolicyProtocol(inputs: inputs, singleInputValidators: validators)
+        var policy = SingleInputPolicy(inputs: inputs, singleInputValidators: validators)
         
         // Act
         let result = policy.check()
@@ -91,7 +91,7 @@ class SingleInputPolicyProtocolTests: XCTestCase {
         let validators: [any SingleInputValidator<String>] = [
             StringHasMinLen(minLen: 3)
         ]
-        var policy = SingleInputPolicyProtocol(inputs: inputs, singleInputValidators: validators)
+        var policy = SingleInputPolicy(inputs: inputs, singleInputValidators: validators)
         
         // Act
         let result = policy.check()
@@ -106,7 +106,7 @@ class SingleInputPolicyProtocolTests: XCTestCase {
         // Arrange
         let inputs = ["test1", "test2", "test3"]
         let validators: [any SingleInputValidator<String>] = []
-        var policy = SingleInputPolicyProtocol(inputs: inputs, singleInputValidators: validators)
+        var policy = SingleInputPolicy(inputs: inputs, singleInputValidators: validators)
         
         // Act
         let result = policy.check()
@@ -123,7 +123,7 @@ class SingleInputPolicyProtocolTests: XCTestCase {
         let validators: [any SingleInputValidator<String>] = [
             StringHasMinLen(minLen: 3)
         ]
-        var policy = SingleInputPolicyProtocol(inputs: inputs, singleInputValidators: validators)
+        var policy = SingleInputPolicy(inputs: inputs, singleInputValidators: validators)
         
         // Act
         let result1 = policy.check()
@@ -145,7 +145,7 @@ class SingleInputPolicyProtocolTests: XCTestCase {
         let validators: [any SingleInputValidator<String>] = [
             StringHasMinLen(minLen: 3)
         ]
-        var policy = SingleInputPolicyProtocol(inputs: inputs, singleInputValidators: validators)
+        var policy = SingleInputPolicy(inputs: inputs, singleInputValidators: validators)
         
         var successCallbackExecuted = false
         var failCallbackExecuted = false
@@ -168,7 +168,7 @@ class SingleInputPolicyProtocolTests: XCTestCase {
         let validators: [any SingleInputValidator<String>] = [
             StringHasMinLen(minLen: 3)
         ]
-        var policy = SingleInputPolicyProtocol(inputs: inputs, singleInputValidators: validators)
+        var policy = SingleInputPolicy(inputs: inputs, singleInputValidators: validators)
         
         var successCallbackExecuted = false
         var failCallbackExecuted = false
@@ -191,7 +191,7 @@ class SingleInputPolicyProtocolTests: XCTestCase {
         let validators: [any SingleInputValidator<String>] = [
             StringHasMinLen(minLen: 3)
         ]
-        var policy = SingleInputPolicyProtocol(inputs: inputs, singleInputValidators: validators)
+        var policy = SingleInputPolicy(inputs: inputs, singleInputValidators: validators)
         
         // Act & Assert
         XCTAssertNoThrow(try policy.ThrowableCheck(), "Should not throw exception for valid inputs")
@@ -204,7 +204,7 @@ class SingleInputPolicyProtocolTests: XCTestCase {
         let validators: [any SingleInputValidator<String>] = [
             StringHasMinLen(minLen: 3)
         ]
-        var policy = SingleInputPolicyProtocol(inputs: inputs, singleInputValidators: validators)
+        var policy = SingleInputPolicy(inputs: inputs, singleInputValidators: validators)
         
         // Act & Assert
         XCTAssertThrowsError(try policy.ThrowableCheck(), "Should throw exception for invalid inputs") { error in
@@ -220,7 +220,7 @@ class SingleInputPolicyProtocolTests: XCTestCase {
         let validators: [any SingleInputValidator<String>] = [
             StringHasMinLen(minLen: 3)
         ]
-        var policy = SingleInputPolicyProtocol(inputs: inputs, singleInputValidators: validators)
+        var policy = SingleInputPolicy(inputs: inputs, singleInputValidators: validators)
         
         // Act
         _ = policy.check() // This will populate errors
@@ -238,7 +238,7 @@ class SingleInputPolicyProtocolTests: XCTestCase {
         let validators: [any SingleInputValidator<String>] = [
             StringHasMinLen(minLen: 3)
         ]
-        var policy = SingleInputPolicyProtocol(inputs: inputs, singleInputValidators: validators)
+        var policy = SingleInputPolicy(inputs: inputs, singleInputValidators: validators)
         
         // Act
         _ = policy.check() // This will result in no errors
@@ -264,7 +264,7 @@ class SingleInputPolicyProtocolTests: XCTestCase {
         // Note: This test would need Int-specific validators to be meaningful
         let inputs = [1, 2, 3]
         let validators: [any SingleInputValidator<Int>] = []
-        var policy = SingleInputPolicyProtocol(inputs: inputs, singleInputValidators: validators)
+        var policy = SingleInputPolicy(inputs: inputs, singleInputValidators: validators)
         
         let result = policy.check()
         XCTAssertTrue(result, "Empty validators should pass")
@@ -294,7 +294,7 @@ class SingleInputPolicyProtocolTests: XCTestCase {
         let validators: [any SingleInputValidator<String>] = [
             StringHasMinLen(minLen: 3)
         ]
-        var policy = SingleInputPolicyProtocol(inputs: inputs, singleInputValidators: validators)
+        var policy = SingleInputPolicy(inputs: inputs, singleInputValidators: validators)
         
         // Since it's not thread-safe, we just test basic functionality
         let result = policy.check()
