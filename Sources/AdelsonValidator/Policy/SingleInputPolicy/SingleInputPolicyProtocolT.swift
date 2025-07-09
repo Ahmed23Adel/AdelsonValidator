@@ -8,7 +8,7 @@
 import Foundation
 
 
-protocol SingleInputPolicyType<InputType> {
+public protocol SingleInputPolicyType<InputType> {
     associatedtype InputType: Comparable
     var inputs: [InputType] { get }
     @available(macOS 13.0.0, *)
@@ -24,7 +24,7 @@ protocol SingleInputPolicyType<InputType> {
 
 
 extension SingleInputPolicyType{
-    mutating func checkAndExec(onSuccess: () -> Void, onFail: () -> Void) {
+    public mutating func checkAndExec(onSuccess: () -> Void, onFail: () -> Void) {
         if check(){
             onSuccess()
         } else {
@@ -33,7 +33,7 @@ extension SingleInputPolicyType{
         }
     }
     
-    mutating func ThrowableCheck() throws {
+    public mutating func ThrowableCheck() throws {
         if !check(){
             saveError()
             throw getError()!
@@ -41,7 +41,7 @@ extension SingleInputPolicyType{
     }
     
     // it returns the first error only
-    mutating func getError() -> (any Error)? {
+    public mutating func getError() -> (any Error)? {
         return errors[0]
     }
 }

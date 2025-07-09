@@ -8,10 +8,10 @@
 import Foundation
 
 @available(macOS 13.0.0, *)
-struct PredefinedSingleInputPolicies{
+public  struct PredefinedSingleInputPolicies{
     private init(){}
     
-    static func simplePasswordPolicy(input: String) -> any SingleInputPolicyType{
+    public static func simplePasswordPolicy(input: String) -> any SingleInputPolicyType{
         SingleInputPolicy(inputs: [input], singleInputValidators: [
             StringHasMinLen(minLen: 6),
             StringHasMaxLen(maxLen: 50),
@@ -20,7 +20,7 @@ struct PredefinedSingleInputPolicies{
         ])
     }
     
-    static func mediumPasswordPolicy(input: String) -> any SingleInputPolicyType{
+    public static func mediumPasswordPolicy(input: String) -> any SingleInputPolicyType{
         SingleInputPolicy(inputs: [input], singleInputValidators: [
             StringHasMinLen(minLen: 8),
             StringContainsAtLeastOneNumber(),
@@ -30,7 +30,7 @@ struct PredefinedSingleInputPolicies{
         ])
     }
     
-    static func hardPasswordPolicy(input: String) -> any SingleInputPolicyType{
+    public static func hardPasswordPolicy(input: String) -> any SingleInputPolicyType{
         SingleInputPolicy(inputs: [input], singleInputValidators: [
             StringHasMinLen(minLen: 12),
             StringContainsNNumbers(n: 3),

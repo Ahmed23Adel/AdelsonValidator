@@ -8,13 +8,13 @@
 import Foundation
 
 @available(macOS 13.0.0, *)
-struct MultipleInputPolicy<InputType: Comparable>: MultipleInputPolicyType{
-    var inputs: [InputType]
-    var singleInputValidators: [any SingleInputValidator<InputType>]
-    var multipleInputValidators: [any MultipleInputValidator<InputType>]
-    var errors: [any Error] = []
+public struct MultipleInputPolicy<InputType: Comparable>: MultipleInputPolicyType{
+    public var inputs: [InputType]
+    public var singleInputValidators: [any SingleInputValidator<InputType>]
+    public var multipleInputValidators: [any MultipleInputValidator<InputType>]
+    public var errors: [any Error] = []
     
-    init(inputs: [InputType],
+    public init(inputs: [InputType],
          singleInputValidators: [any SingleInputValidator<InputType>],
          multipleInputValidators: [any MultipleInputValidator<InputType>]) {
         self.inputs = inputs
@@ -22,7 +22,7 @@ struct MultipleInputPolicy<InputType: Comparable>: MultipleInputPolicyType{
         self.multipleInputValidators = multipleInputValidators
     }
     
-    mutating func check() -> Bool {
+    public mutating func check() -> Bool {
         errors.removeAll()
         checkSingleInputValidators()
         checkMultipleInputValidators()

@@ -25,7 +25,7 @@ extension SingleInputValidator{
     
     
     
-    mutating func checkAndExec(onSuccess: () -> Void, onFail: () -> Void) {
+    public mutating func checkAndExec(onSuccess: () -> Void, onFail: () -> Void) {
         if check(){
             onSuccess()
         } else {
@@ -34,14 +34,14 @@ extension SingleInputValidator{
         }
     }
     
-    mutating func ThrowableCheck() throws {
+    public mutating func ThrowableCheck() throws {
         if !check(){
             saveError()
             throw getError()!
         }
     }
     
-    mutating func getError() -> (any Error)? {
+    public mutating func getError() -> (any Error)? {
         return error
     }
 }

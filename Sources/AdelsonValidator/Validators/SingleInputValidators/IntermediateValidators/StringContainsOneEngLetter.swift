@@ -11,19 +11,19 @@ enum StringContainsAtLeastOneEngLetterError: Error{
     case givenInputDoesnotContainAtLeastOneEngLetter
 }
 
-struct StringContainsAtLeastOneEngLetter: SingleInputValidator{
-    var input: String
-    var error: (any Error)?
+public  struct StringContainsAtLeastOneEngLetter: SingleInputValidator{
+    public var input: String
+    public var error: (any Error)?
     
-    init(){
+    public init(){
         self.input = ""
     }
     
-    mutating func setInput(input: String) {
+    public mutating func setInput(input: String) {
         self.input = input
     }
     
-    mutating func check() -> Bool {
+    public mutating func check() -> Bool {
         let hasLetters = self.input.rangeOfCharacter(from: .letters) != nil
         if !hasLetters {
             saveError()
@@ -32,7 +32,7 @@ struct StringContainsAtLeastOneEngLetter: SingleInputValidator{
         
     }
     
-    mutating func saveError() {
+    public mutating func saveError() {
         self.error = StringContainsAtLeastOneEngLetterError.givenInputDoesnotContainAtLeastOneEngLetter
     }
     

@@ -8,7 +8,7 @@
 import Foundation
 
 @available(macOS 13.0.0, *)
-protocol MultipleInputPolicyType<InputType>{
+public protocol MultipleInputPolicyType<InputType>{
     associatedtype InputType: Comparable
     var inputs: [InputType] { get }
     @available(macOS 13.0.0, *)
@@ -26,7 +26,7 @@ protocol MultipleInputPolicyType<InputType>{
 
 @available(macOS 13.0.0, *)
 extension MultipleInputPolicyType{
-    mutating func checkAndExec(onSuccess: () -> Void, onFail: () -> Void) {
+    public mutating func checkAndExec(onSuccess: () -> Void, onFail: () -> Void) {
         if check(){
             onSuccess()
         } else {
@@ -34,14 +34,14 @@ extension MultipleInputPolicyType{
         }
     }
     
-    mutating func ThrowableCheck() throws {
+    public mutating func ThrowableCheck() throws {
         if !check(){
             throw getError()!
         }
     }
     
     // it returns the first error only
-    mutating func getError() -> (any Error)? {
+    public mutating func getError() -> (any Error)? {
         return errors[0]
     }
 }

@@ -11,21 +11,21 @@ enum StringContainsNNumbersError: Error{
     case notContainsNNumbers
 }
 
-struct StringContainsNNumbers: SingleInputValidator{
-    var input: String
-    var n: Int
-    var error: (any Error)?
+public  struct StringContainsNNumbers: SingleInputValidator{
+    public var input: String
+    public var n: Int
+    public var error: (any Error)?
     
-    init(n: Int){
+    public init(n: Int){
         self.n = n
         self.input = ""
     }
     
-    mutating func setInput(input: String) {
+    public mutating func setInput(input: String) {
         self.input = input
     }
     
-    mutating func check() -> Bool {
+    public mutating func check() -> Bool {
         let numbersCount = input.filter{ $0.isNumber }.count
         if numbersCount >= n {
             return true
@@ -35,7 +35,7 @@ struct StringContainsNNumbers: SingleInputValidator{
         }
     }
     
-    mutating func saveError() {
+    public mutating func saveError() {
         self.error = StringContainsNNumbersError.notContainsNNumbers
     }
     

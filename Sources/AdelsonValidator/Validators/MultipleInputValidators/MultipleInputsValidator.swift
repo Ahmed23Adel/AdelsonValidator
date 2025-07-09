@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol MultipleInputValidator<InputType>{
+public  protocol MultipleInputValidator<InputType>{
     associatedtype InputType: Comparable
     var inputs: [InputType] { get }
     var error: (any Error)? { get }
@@ -21,7 +21,7 @@ protocol MultipleInputValidator<InputType>{
 }
 
 extension MultipleInputValidator{
-    mutating func checkAndExec(onSuccess: () -> Void, onFail: () -> Void) {
+    public mutating func checkAndExec(onSuccess: () -> Void, onFail: () -> Void) {
         if check(){
             onSuccess()
         } else {
@@ -30,14 +30,14 @@ extension MultipleInputValidator{
         }
     }
     
-    mutating func ThrowableCheck() throws {
+    public mutating func ThrowableCheck() throws {
         if !check(){
             saveError()
             throw getError()!
         }
     }
     
-    mutating func getError() -> (any Error)? {
+    public mutating func getError() -> (any Error)? {
         return error
     }
 }

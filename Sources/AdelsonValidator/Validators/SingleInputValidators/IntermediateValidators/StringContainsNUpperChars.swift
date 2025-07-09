@@ -11,21 +11,21 @@ enum StringContainsNUpperCharsError: Error{
     case notContainsNUpperChars
 }
 
-struct StringContainsNUpperChars: SingleInputValidator{
-    var input: String
-    var n: Int
-    var error: (any Error)?
+public  struct StringContainsNUpperChars: SingleInputValidator{
+    public var input: String
+    public var n: Int
+    public var error: (any Error)?
     
-    init(n: Int){
+    public init(n: Int){
         self.n = n
         self.input = ""
     }
     
-    mutating func setInput(input: String) {
+    public mutating func setInput(input: String) {
         self.input = input
     }
     
-    mutating func check() -> Bool {
+    public mutating func check() -> Bool {
         let lowerCaseCharsCount = input.filter{ $0.isUppercase }.count
         if lowerCaseCharsCount >= n{
             return true
@@ -35,7 +35,7 @@ struct StringContainsNUpperChars: SingleInputValidator{
         }
     }
     
-    mutating func saveError() {
+    public mutating func saveError() {
         self.error = StringContainsNUpperCharsError.notContainsNUpperChars
     }
     

@@ -11,19 +11,19 @@ enum StringContainsAtLeastOneNumError: Error{
     case givenInputDoesnotContainAtLeastOneNum
 }
 
-struct StringContainsAtLeastOneNumber: SingleInputValidator{
-    var input: String
-    var error: (any Error)?
+public  struct StringContainsAtLeastOneNumber: SingleInputValidator{
+    public var input: String
+    public var error: (any Error)?
     
-    init(){
+    public init(){
         self.input = ""
     }
     
-    mutating func setInput(input: String) {
+    public mutating func setInput(input: String) {
         self.input = input
     }
     
-    mutating func check() -> Bool {
+    public mutating func check() -> Bool {
         let hasLetters = self.input.rangeOfCharacter(from: .decimalDigits) != nil
         if !hasLetters {
             saveError()
@@ -32,7 +32,7 @@ struct StringContainsAtLeastOneNumber: SingleInputValidator{
         
     }
     
-    mutating func saveError() {
+    public mutating func saveError() {
         self.error = StringContainsAtLeastOneNumError.givenInputDoesnotContainAtLeastOneNum
     }
     

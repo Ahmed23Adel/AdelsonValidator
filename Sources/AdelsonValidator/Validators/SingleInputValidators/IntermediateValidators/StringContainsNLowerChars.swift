@@ -11,20 +11,20 @@ enum StringContainsNLowerCharsError: Error{
     case notContainsNLowerChars
 }
 
-struct StringContainsNLowerChars: SingleInputValidator{
-    var input: String
-    var n: Int
-    var error: (any Error)?
+public  struct StringContainsNLowerChars: SingleInputValidator{
+    public var input: String
+    public var n: Int
+    public var error: (any Error)?
     
-    init(n: Int){
+    public init(n: Int){
         self.n = n
         self.input = ""
     }
     
-    mutating func setInput(input: String) {
+    public mutating func setInput(input: String) {
         self.input = input
     }
-    mutating func check() -> Bool {
+    public mutating func check() -> Bool {
         let lowerCaseCharsCount = input.filter{ $0.isLowercase }.count
         if lowerCaseCharsCount >= n{
             return true
@@ -34,7 +34,7 @@ struct StringContainsNLowerChars: SingleInputValidator{
         }
     }
     
-    mutating func saveError() {
+    public mutating func saveError() {
         self.error = StringContainsNLowerCharsError.notContainsNLowerChars
     }
     
