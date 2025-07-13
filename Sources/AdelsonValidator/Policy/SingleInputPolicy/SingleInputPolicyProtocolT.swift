@@ -15,6 +15,7 @@ public protocol SingleInputPolicyType<InputType> {
     var singleInputValidators: [any SingleInputValidator<InputType>] { get }
     var errors: [(any Error)] { get }
     
+    mutating func setInput(inputs: [InputType])
     mutating func check() -> Bool
     mutating func checkAndExec(onSuccess: ()->Void, onFail: ()->Void)
     mutating func ThrowableCheck() throws

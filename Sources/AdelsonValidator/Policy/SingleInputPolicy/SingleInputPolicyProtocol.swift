@@ -9,15 +9,20 @@ import Foundation
 
 @available(macOS 13.0.0, *)
 public struct SingleInputPolicy<InputType: Comparable>: SingleInputPolicyType{
+    
+    
     public var inputs: [InputType]
     public var singleInputValidators: [any SingleInputValidator<InputType>]
     public var errors: [any Error] = []
     
-    public init(inputs: [InputType], singleInputValidators: [any SingleInputValidator<InputType>]) {
-        self.inputs = inputs
+    public init(singleInputValidators: [any SingleInputValidator<InputType>]) {
+        self.inputs = []
         self.singleInputValidators = singleInputValidators
     }
     
+    public mutating func setInput(inputs: [InputType]) {
+        self.inputs = inputs
+    }
     public mutating func check() -> Bool {
         for var validator in singleInputValidators {
             for input in inputs {
