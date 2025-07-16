@@ -25,7 +25,7 @@ public struct EmailValidator: SingleInputValidator{
     }
     
     public mutating func check() -> Bool {
-        var validatorRegex = StringConfromsToRegex(regex: "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")
+        var validatorRegex = StringConfromsToRegex(input: self.input, regex: "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")
         if validatorRegex.check(){
             return true
         }
