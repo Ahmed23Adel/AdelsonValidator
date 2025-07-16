@@ -11,7 +11,7 @@ import Foundation
 public  struct PredefinedSingleInputPolicies{
     private init(){}
     
-    public static func simplePasswordPolicy(input: String) -> any SingleInputPolicyType{
+    public static func simplePasswordPolicy() -> any SingleInputPolicyType<String>{
         SingleInputPolicy(singleInputValidators: [
             StringHasMinLen(minLen: 6),
             StringHasMaxLen(maxLen: 50),
@@ -20,7 +20,7 @@ public  struct PredefinedSingleInputPolicies{
         ])
     }
     
-    public static func mediumPasswordPolicy(input: String) -> any SingleInputPolicyType{
+    public static func mediumPasswordPolicy() -> any SingleInputPolicyType<String>{
         SingleInputPolicy(singleInputValidators: [
             StringHasMinLen(minLen: 8),
             StringContainsAtLeastOneNumber(),
@@ -30,7 +30,7 @@ public  struct PredefinedSingleInputPolicies{
         ])
     }
     
-    public static func hardPasswordPolicy(input: String) -> any SingleInputPolicyType{
+    public static func hardPasswordPolicy() -> any SingleInputPolicyType<String>{
         SingleInputPolicy(singleInputValidators: [
             StringHasMinLen(minLen: 12),
             StringContainsNNumbers(n: 3),
