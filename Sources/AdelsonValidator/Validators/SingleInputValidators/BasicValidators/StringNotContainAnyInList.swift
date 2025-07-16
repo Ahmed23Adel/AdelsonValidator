@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum StringNotContainAnyInListError: Error {
+public enum StringNotContainAnyInListError: Error {
     case StringContainsOneItemOrMoreFromList
 }
 

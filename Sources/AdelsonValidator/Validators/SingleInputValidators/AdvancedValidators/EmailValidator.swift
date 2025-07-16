@@ -6,7 +6,7 @@
 //
 
 import Foundation
-enum EmailValidatorError: Error{
+public enum EmailValidatorError: Error{
     case givenEmailNotValid
 }
 

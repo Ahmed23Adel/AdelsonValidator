@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum StringContainsAtLeastOneEngLetterError: Error{
+public enum StringContainsAtLeastOneEngLetterError: Error{
     case givenInputDoesnotContainAtLeastOneEngLetter
 }
 

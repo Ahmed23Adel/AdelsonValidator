@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum StringContainsNUpperCharsError: Error{
+public enum StringContainsNUpperCharsError: Error{
     case notContainsNUpperChars
 }
 

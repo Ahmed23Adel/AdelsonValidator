@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum StringContainsError: Error{
+public enum StringContainsError: Error{
     case errorNotContains(substr: String)
 }
 

@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum StringContainsNLowerCharsError: Error{
+public enum StringContainsNLowerCharsError: Error{
     case notContainsNLowerChars
 }
 

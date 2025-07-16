@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum AllOfSameLenError: Error{
+public enum AllOfSameLenError: Error{
     case inputsHaveDifferentLengths
 }
 

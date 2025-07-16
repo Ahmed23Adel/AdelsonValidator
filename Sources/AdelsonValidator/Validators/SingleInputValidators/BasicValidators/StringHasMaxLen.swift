@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum StringHasMaxLenError: Error{
+public enum StringHasMaxLenError: Error{
     case providedInputIsGreaterThanMinLen
 }
 

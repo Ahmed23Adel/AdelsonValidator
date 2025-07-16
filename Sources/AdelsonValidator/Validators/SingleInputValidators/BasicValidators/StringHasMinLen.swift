@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum StringHasMinLenError: Error{
+public enum StringHasMinLenError: Error{
     case providedInputIsSmallerThanMinLen
 }
 

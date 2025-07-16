@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum StringContainsNSpecialCharsError: Error{
+public enum StringContainsNSpecialCharsError: Error{
     case notContainsNSpecialChars
 }
 

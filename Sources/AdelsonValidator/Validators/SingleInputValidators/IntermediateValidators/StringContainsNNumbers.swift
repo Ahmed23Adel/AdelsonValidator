@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum StringContainsNNumbersError: Error{
+public enum StringContainsNNumbersError: Error{
     case notContainsNNumbers
 }
 

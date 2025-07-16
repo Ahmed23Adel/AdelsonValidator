@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum StringContainsAtLeastOneNumError: Error{
+public enum StringContainsAtLeastOneNumError: Error{
     case givenInputDoesnotContainAtLeastOneNum
 }
 
