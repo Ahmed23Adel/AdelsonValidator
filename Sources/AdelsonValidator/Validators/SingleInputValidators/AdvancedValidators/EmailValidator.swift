@@ -19,6 +19,10 @@ public struct EmailValidator: SingleInputValidator{
         self.error = nil
     }
 
+    public init(){
+        self.input = ""
+        self.error = nil
+    }
     
     public mutating func setInput(input: String) {
         self.input = input
