@@ -11,27 +11,27 @@ public enum StringHasMaxLenError: Error{
     case providedInputIsGreaterThanMinLen
 }
 
-struct StringHasMaxLen: SingleInputValidator{
-    private(set)var input: String
-    private(set) var maxLen: Int
-    private(set) var error: (any Error)?
+public struct StringHasMaxLen: SingleInputValidator{
+    public var input: String
+    public  var maxLen: Int
+    public  var error: (any Error)?
     
-    init(input: String, maxLen: Int){
+    public init(input: String, maxLen: Int){
         self.input = input
         self.maxLen = maxLen
     }
 
-    init(maxLen: Int){
+    public init(maxLen: Int){
         self.maxLen = maxLen
         self.input = ""
     }
     
-    mutating func setInput(input: String) {
+    public mutating func setInput(input: String) {
         self.input = input
         self.error = nil
     }
     
-    mutating func check() -> Bool {
+    public mutating func check() -> Bool {
         if input.count <= maxLen{
             return true
         } else{
@@ -40,7 +40,7 @@ struct StringHasMaxLen: SingleInputValidator{
         }
     }
     
-    mutating func saveError() {
+    public mutating func saveError() {
         error = StringHasMaxLenError.providedInputIsGreaterThanMinLen
     }
     

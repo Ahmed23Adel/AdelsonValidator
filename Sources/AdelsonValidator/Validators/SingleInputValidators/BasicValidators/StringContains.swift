@@ -11,28 +11,28 @@ public enum StringContainsError: Error{
     case errorNotContains(substr: String)
 }
 
-struct StringContains: SingleInputValidator{
-    private(set)var input: String
-    private(set) var substr: String
-    private(set) var error: (any Error)?
+public struct StringContains: SingleInputValidator{
+    public var input: String
+    public  var substr: String
+    public  var error: (any Error)?
 
-    init(input: String, substr: String){
+    public init(input: String, substr: String){
         self.input = input
         self.substr = substr
     }
     
-    init(substr: String){
+    public init(substr: String){
         self.substr = substr
         self.input = ""
     }
     
-    mutating func setInput(input: String) {
+    public mutating func setInput(input: String) {
         self.input = input
         self.error = nil
     }
     
     
-    mutating func check() -> Bool {
+    public mutating func check() -> Bool {
         if substr.isEmpty{ return true }
         if input.contains(substr) {
             return true
@@ -41,7 +41,7 @@ struct StringContains: SingleInputValidator{
         return false
     }
     
-    mutating func saveError() {
+    public mutating func saveError() {
         error = StringContainsError.errorNotContains(substr: substr)
     }
     

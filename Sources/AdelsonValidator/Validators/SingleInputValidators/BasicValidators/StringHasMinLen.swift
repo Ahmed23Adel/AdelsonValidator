@@ -11,28 +11,28 @@ public enum StringHasMinLenError: Error{
     case providedInputIsSmallerThanMinLen
 }
 
-struct StringHasMinLen: SingleInputValidator{
-    private(set)var input: String
-    private(set) var minLen: Int
-    private(set) var error: (any Error)?
+public struct StringHasMinLen: SingleInputValidator{
+    public var input: String
+    public var minLen: Int
+    public var error: (any Error)?
     
-    init(input: String, minLen: Int){
+    public init(input: String, minLen: Int){
         self.input = input
         self.minLen = minLen
     }
     
-    init(minLen: Int){
+    public init(minLen: Int){
         self.minLen = minLen
         self.input = ""
     }
     
     
-    mutating func setInput(input: String) {
+    public mutating func setInput(input: String) {
         self.input = input
         self.error = nil
     }
     
-    mutating func check() -> Bool {
+    public mutating func check() -> Bool {
         if input.count >= minLen{
             return true
         } else{
@@ -42,7 +42,7 @@ struct StringHasMinLen: SingleInputValidator{
     }
     
     
-    mutating func saveError() {
+    public mutating func saveError() {
         error = StringHasMinLenError.providedInputIsSmallerThanMinLen
     }
     

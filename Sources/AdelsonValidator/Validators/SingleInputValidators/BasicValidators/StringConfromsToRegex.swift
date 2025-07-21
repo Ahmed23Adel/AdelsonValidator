@@ -7,31 +7,31 @@
 
 import Foundation
 
-enum StringConfromsToRegexError: Error{
+public enum StringConfromsToRegexError: Error{
     case notConformingToGivenRegex(regex: String)
 }
 
-struct StringConfromsToRegex: SingleInputValidator{
-    private(set)var input: String
-    private(set) var regex: String
-    private(set) var error: (any Error)?
+public struct StringConfromsToRegex: SingleInputValidator{
+    public var input: String
+    public var regex: String
+    public var error: (any Error)?
     
-    init(input: String, regex: String){
+    public init(input: String, regex: String){
         self.input = input
         self.regex = regex
     }
     
-    init(regex: String){
+    public init(regex: String){
         self.regex = regex
         self.input = ""
     }
     
-    mutating func setInput(input: String) {
+    public mutating func setInput(input: String) {
         self.input = input
         self.error = nil
     }
     
-    mutating func check() -> Bool {
+    public mutating func check() -> Bool {
         let predicate  = NSPredicate(format: "SELF MATCHES %@", regex)
         if predicate.evaluate(with: input){
             return true
@@ -44,7 +44,7 @@ struct StringConfromsToRegex: SingleInputValidator{
     }
     
     
-    mutating func saveError() {
+    public mutating func saveError() {
         error = StringConfromsToRegexError.notConformingToGivenRegex(regex: regex)
     }
     

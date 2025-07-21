@@ -11,7 +11,7 @@ public enum StringContainsNNumbersError: Error{
     case notContainsNNumbers
 }
 
-public  struct StringContainsNNumbers: SingleInputValidator{
+public struct StringContainsNNumbers: SingleInputValidator{
     public var input: String
     public var n: Int
     public var error: (any Error)?

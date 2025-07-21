@@ -11,7 +11,7 @@ public enum StringContainsAtLeastOneNumError: Error{
     case givenInputDoesnotContainAtLeastOneNum
 }
 
-public  struct StringContainsAtLeastOneNumber: SingleInputValidator{
+public struct StringContainsAtLeastOneNumber: SingleInputValidator{
     public var input: String
     public var error: (any Error)?
     

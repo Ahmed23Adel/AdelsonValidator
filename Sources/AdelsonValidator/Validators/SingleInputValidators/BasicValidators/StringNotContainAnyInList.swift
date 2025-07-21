@@ -11,28 +11,28 @@ public enum StringNotContainAnyInListError: Error {
     case StringContainsOneItemOrMoreFromList
 }
 
-struct StringNotContainAnyInList: SingleInputValidator {
-    private(set)var input: String
-    private(set) var notContained: [String]
-    private(set)var error: (any Error)?
+public struct StringNotContainAnyInList: SingleInputValidator {
+    public var input: String
+    public  var notContained: [String]
+    public var error: (any Error)?
     
-    init(input: String, notContained: [String]) {
+    public init(input: String, notContained: [String]) {
         self.input = input
         self.notContained = notContained
     }
     
-    init(notContained: [String]) {
+    public init(notContained: [String]) {
         self.notContained = notContained
         self.input = ""
     }
     
     
-    mutating func setInput(input: String) {
+    public mutating func setInput(input: String) {
         self.input = input
         self.error = nil
     }
     
-    mutating func check() -> Bool {
+    public mutating func check() -> Bool {
         for item in notContained{
             if input.contains(item){
                 saveError()
@@ -42,7 +42,7 @@ struct StringNotContainAnyInList: SingleInputValidator {
         return true
     }
     
-    mutating func saveError() {
+    public mutating func saveError() {
         error = StringNotContainAnyInListError.StringContainsOneItemOrMoreFromList
     }
     
