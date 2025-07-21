@@ -6,10 +6,17 @@
 //
 
 import Foundation
-public enum StringIsAllLettersError: Error {
-    case containsNonLetterCharacters
-}
 
+public enum StringIsAllLettersError: AdelsonReadableError {
+    case containsNonLetterCharacters
+
+    public var message: String {
+        switch self {
+        case .containsNonLetterCharacters:
+            return "The input must contain only letters."
+        }
+    }
+}
 public struct StringIsAllLetters: SingleInputValidator {
     public var input: String
     public var error: (any Error)?

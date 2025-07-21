@@ -7,8 +7,15 @@
 
 import Foundation
 
-public enum StringConfromsToRegexError: Error{
+public enum StringConformsToRegexError: AdelsonReadableError {
     case notConformingToGivenRegex(regex: String)
+
+    public var message: String {
+        switch self {
+        case .notConformingToGivenRegex(let regex):
+            return "The input does not match the required pattern: \(regex)"
+        }
+    }
 }
 
 public struct StringConfromsToRegex: SingleInputValidator{
@@ -45,7 +52,7 @@ public struct StringConfromsToRegex: SingleInputValidator{
     
     
     public mutating func saveError() {
-        error = StringConfromsToRegexError.notConformingToGivenRegex(regex: regex)
+        error = StringConformsToRegexError.notConformingToGivenRegex(regex: regex)
     }
     
     

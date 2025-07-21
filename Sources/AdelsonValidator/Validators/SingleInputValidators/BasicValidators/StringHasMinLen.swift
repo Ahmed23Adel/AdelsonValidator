@@ -7,8 +7,15 @@
 
 import Foundation
 
-public enum StringHasMinLenError: Error{
+public enum StringHasMinLenError: AdelsonReadableError {
     case providedInputIsSmallerThanMinLen
+
+    public var message: String {
+        switch self {
+        case .providedInputIsSmallerThanMinLen:
+            return "The input is shorter than the required minimum length."
+        }
+    }
 }
 
 public struct StringHasMinLen: SingleInputValidator{

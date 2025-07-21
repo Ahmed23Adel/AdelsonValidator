@@ -7,8 +7,15 @@
 
 import Foundation
 
-public enum StringNotContainAnyInListError: Error {
+public enum StringNotContainAnyInListError: AdelsonReadableError {
     case StringContainsOneItemOrMoreFromList
+
+    public var message: String {
+        switch self {
+        case .StringContainsOneItemOrMoreFromList:
+            return "The input must not contain any of the forbidden items."
+        }
+    }
 }
 
 public struct StringNotContainAnyInList: SingleInputValidator {

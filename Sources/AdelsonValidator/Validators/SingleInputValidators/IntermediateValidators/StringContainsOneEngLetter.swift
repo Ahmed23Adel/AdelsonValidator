@@ -7,10 +7,16 @@
 
 import Foundation
 
-public enum StringContainsAtLeastOneEngLetterError: Error{
+public enum StringContainsAtLeastOneEngLetterError: AdelsonReadableError {
     case givenInputDoesnotContainAtLeastOneEngLetter
-}
 
+    public var message: String {
+        switch self {
+        case .givenInputDoesnotContainAtLeastOneEngLetter:
+            return "The input must contain at least one English letter."
+        }
+    }
+}
 public  struct StringContainsAtLeastOneEngLetter: SingleInputValidator{
     public var input: String
     public var error: (any Error)?

@@ -7,8 +7,15 @@
 
 import Foundation
 
-public enum StringContainsNNumbersError: Error{
+public enum StringContainsNNumbersError: AdelsonReadableError {
     case notContainsNNumbers
+
+    public var message: String {
+        switch self {
+        case .notContainsNNumbers:
+            return "The input must contain at least the required number of digits."
+        }
+    }
 }
 
 public struct StringContainsNNumbers: SingleInputValidator{

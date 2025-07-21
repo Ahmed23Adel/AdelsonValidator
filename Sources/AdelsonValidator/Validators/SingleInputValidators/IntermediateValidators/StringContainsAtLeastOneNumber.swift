@@ -7,8 +7,15 @@
 
 import Foundation
 
-public enum StringContainsAtLeastOneNumError: Error{
+public enum StringContainsAtLeastOneNumError: AdelsonReadableError {
     case givenInputDoesnotContainAtLeastOneNum
+
+    public var message: String {
+        switch self {
+        case .givenInputDoesnotContainAtLeastOneNum:
+            return "The input must contain at least one number."
+        }
+    }
 }
 
 public struct StringContainsAtLeastOneNumber: SingleInputValidator{

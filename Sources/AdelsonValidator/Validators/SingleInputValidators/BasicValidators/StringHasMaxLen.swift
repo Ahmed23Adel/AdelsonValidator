@@ -7,8 +7,16 @@
 
 import Foundation
 
-public enum StringHasMaxLenError: Error{
-    case providedInputIsGreaterThanMinLen
+
+public enum StringHasMaxLenError: AdelsonReadableError{
+    case providedInputIsGreaterThanMaxLen
+    
+    public var message: String {
+        switch self {
+        case .providedInputIsGreaterThanMaxLen:
+            return "The input is greater than the required max length."
+        }
+    }
 }
 
 public struct StringHasMaxLen: SingleInputValidator{
@@ -41,7 +49,7 @@ public struct StringHasMaxLen: SingleInputValidator{
     }
     
     public mutating func saveError() {
-        error = StringHasMaxLenError.providedInputIsGreaterThanMinLen
+        error = StringHasMaxLenError.providedInputIsGreaterThanMaxLen
     }
     
     

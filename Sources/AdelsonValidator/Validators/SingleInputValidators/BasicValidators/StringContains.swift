@@ -7,10 +7,16 @@
 
 import Foundation
 
-public enum StringContainsError: Error{
+public enum StringContainsError: AdelsonReadableError {
     case errorNotContains(substr: String)
-}
 
+    public var message: String {
+        switch self {
+        case .errorNotContains(let substr):
+            return "The input must contain \"\(substr)\"."
+        }
+    }
+}
 public struct StringContains: SingleInputValidator{
     public var input: String
     public  var substr: String

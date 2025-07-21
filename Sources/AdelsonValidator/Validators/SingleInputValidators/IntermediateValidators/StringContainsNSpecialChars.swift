@@ -7,8 +7,15 @@
 
 import Foundation
 
-public enum StringContainsNSpecialCharsError: Error{
+public enum StringContainsNSpecialCharsError: AdelsonReadableError {
     case notContainsNSpecialChars
+
+    public var message: String {
+        switch self {
+        case .notContainsNSpecialChars:
+            return "The input must contain at least the required number of special characters."
+        }
+    }
 }
 
 public struct StringContainsNSpecialChars: SingleInputValidator{

@@ -7,10 +7,16 @@
 
 import Foundation
 
-public enum StringContainsNLowerCharsError: Error{
+public enum StringContainsNLowerCharsError: AdelsonReadableError {
     case notContainsNLowerChars
-}
 
+    public var message: String {
+        switch self {
+        case .notContainsNLowerChars:
+            return "The input must contain at least the required number of lowercase letters."
+        }
+    }
+}
 public  struct StringContainsNLowerChars: SingleInputValidator{
     public var input: String
     public var n: Int

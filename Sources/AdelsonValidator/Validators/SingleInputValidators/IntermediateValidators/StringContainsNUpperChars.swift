@@ -7,8 +7,15 @@
 
 import Foundation
 
-public enum StringContainsNUpperCharsError: Error{
+public enum StringContainsNUpperCharsError: AdelsonReadableError {
     case notContainsNUpperChars
+
+    public var message: String {
+        switch self {
+        case .notContainsNUpperChars:
+            return "The input must contain at least the required number of uppercase letters."
+        }
+    }
 }
 
 public  struct StringContainsNUpperChars: SingleInputValidator{
