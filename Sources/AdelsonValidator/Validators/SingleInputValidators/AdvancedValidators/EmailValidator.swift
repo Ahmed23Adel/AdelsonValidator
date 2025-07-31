@@ -6,8 +6,15 @@
 //
 
 import Foundation
-public enum EmailValidatorError: Error{
+public enum EmailValidatorError: AdelsonReadableError{
     case givenEmailNotValid
+    
+    public var message: String {
+        switch self {
+        case .givenEmailNotValid:
+            return "The input does not conform to email pattern"
+        }
+    }
 }
 
 public struct EmailValidator: SingleInputValidator{
